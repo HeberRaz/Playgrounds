@@ -30,10 +30,10 @@ let closure1 = { () in
     withUnsafePointer(to: x) {
         print("2: \(x) has address: \($0)")
     }
-
+    
     print(x)
     print("---")
-    }
+}
 
 runClosure(closure1)
 
@@ -72,30 +72,25 @@ class Additioner {
     }
 }
 
-func memory<T>(to value: inout T, message: String) {
-    withUnsafePointer(to: value) {
-        print(message, $0)
-    }
-}
 
 func calculate() {
     var calculator = Calculator(a: 3, b: 5)
     withUnsafePointer(to: calculator) {
         print("1 Calculator address", $0)
     }
-        
+    
     let closure = { [calculator] in
-    //    calculator = Calculator(a: 33, b: 55) // 0x610000221be0
+        //    calculator = Calculator(a: 33, b: 55) // 0x610000221be0
         print(calculator.sum)
         withUnsafePointer(to: calculator) {
             print("2 Calculator address", $0)
         }
     }
-
+    
     withUnsafePointer(to: calculator) {
         print("3 Calculator address", $0)
     }
-
+    
     calculator = Calculator(a: 3, b: 3)
     closure()
     withUnsafePointer(to: calculator) {
@@ -116,9 +111,9 @@ func add() {
     withUnsafePointer(to: additioner) {
         print("1 Additioner address", $0)
     }
-        
+
     let closure = { [unowned additioner] in
-//        additioner = Calculator(a: 33, b: 55) // 0x610000221be0
+        //        additioner = Calculator(a: 33, b: 55) // 0x610000221be0
         print(additioner.sum)
         withUnsafePointer(to: additioner) {
             print("2 Additioner address", $0)
@@ -130,7 +125,7 @@ func add() {
     }
     closure()
     additioner = Additioner(a: 3, b: 3)
-//    closure()
+    //    closure()
     withUnsafePointer(to: additioner) {
         print("4 Additioner address", $0)
         print(additioner.sum)
@@ -144,7 +139,7 @@ func add() {
 }
 
 calculate()
-print("__________")
+print("----------------------------------------")
 add()
 
 
