@@ -1,5 +1,10 @@
 import UIKit
 
+/*
+ Reference:
+ https://www.freecodecamp.org/news/queue-data-structure-definition-and-java-example-code/#:~:text=Enqueue%3A%20Adds%20an%20item%20from,if%20the%20queue%20is%20full.
+ */
+
 class MyQueue {
     var queueLength = 3
     var items = [Int](repeating: .zero, count: 3)
